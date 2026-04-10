@@ -1,0 +1,245 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   BASE
+   ============================================================ */
+@layer base {
+    :root {
+        --color-accent: 212 21 122;
+        --color-gold: 240 192 96;
+        --color-bg-base: 15 3 32;
+        --color-bg-card: 26 5 48;
+    }
+
+    html {
+        scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+        @apply bg-bg-base text-text-primary font-body;
+    }
+
+    /* Scrollbar styling */
+    ::-webkit-scrollbar {
+        @apply w-1.5;
+    }
+    ::-webkit-scrollbar-track {
+        @apply bg-bg-card;
+    }
+    ::-webkit-scrollbar-thumb {
+        @apply bg-accent/50 rounded-full;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        @apply bg-accent;
+    }
+
+    /* Focus visible */
+    :focus-visible {
+        @apply outline-2 outline-offset-2 outline-accent;
+    }
+
+    /* Selection */
+    ::selection {
+        @apply bg-accent/30 text-text-primary;
+    }
+
+    /* Headings default */
+    h1, h2, h3, h4, h5, h6 {
+        @apply font-heading;
+    }
+}
+
+/* ============================================================
+   COMPONENTS
+   ============================================================ */
+@layer components {
+
+    /* ----- Buttons ----- */
+    .btn-base {
+        @apply inline-flex items-center justify-center gap-2 font-body font-medium rounded-btn
+               transition-all duration-200 cursor-pointer
+               focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent
+               disabled:opacity-50 disabled:cursor-not-allowed;
+    }
+
+    .btn-sm   { @apply btn-base px-4 py-2 text-sm; }
+    .btn      { @apply btn-base px-6 py-3 text-sm; }
+    .btn-lg   { @apply btn-base px-8 py-4 text-base; }
+
+    .btn-accent {
+        @apply btn
+               bg-gradient-accent text-white
+               hover:opacity-90 hover:shadow-glow
+               active:scale-95;
+    }
+    .btn-accent.btn-lg { @apply px-8 py-4 text-base; }
+    .btn-accent.btn-sm { @apply px-4 py-2 text-sm; }
+
+    .btn-outline {
+        @apply btn
+               border border-accent/50 text-accent bg-transparent
+               hover:bg-accent/10 hover:border-accent
+               active:scale-95;
+    }
+    .btn-outline.btn-lg { @apply px-8 py-4 text-base; }
+
+    .btn-ghost {
+        @apply btn text-text-muted hover:text-text-primary hover:bg-bg-light;
+    }
+
+    /* ----- Cards ----- */
+    .card {
+        @apply bg-bg-card border border-border-soft rounded-card
+               transition-all duration-300
+               hover:border-accent/40 hover:shadow-card;
+    }
+
+    .card-featured {
+        @apply card border-accent/50 shadow-card;
+    }
+
+    /* ----- Badge ----- */
+    .badge {
+        @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium;
+    }
+    .badge-accent { @apply badge bg-accent/15 text-accent border border-accent/20; }
+    .badge-gold   { @apply badge bg-gold/15 text-gold border border-gold/20; }
+    .badge-soft   { @apply badge bg-bg-light text-text-muted; }
+
+    /* ----- Section heading pattern ----- */
+    .section-eyebrow {
+        @apply inline-flex items-center gap-2 bg-accent/10 border border-accent/20
+               rounded-full px-4 py-1.5 mb-4
+               text-sm text-accent uppercase tracking-widest font-medium;
+    }
+
+    .section-heading {
+        @apply font-heading font-bold text-section text-text-primary;
+    }
+
+    .section-subheading {
+        @apply mt-4 text-text-muted max-w-2xl;
+    }
+
+    /* ----- Form inputs ----- */
+    .input {
+        @apply block w-full rounded-btn bg-bg-card border border-border-soft
+               text-text-primary placeholder-text-subtle text-sm
+               px-4 py-3
+               focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30
+               transition-colors duration-200;
+    }
+
+    .label {
+        @apply block text-sm font-medium text-text-muted mb-1.5;
+    }
+
+    .input-error {
+        @apply border-red-500/70 focus:border-red-500 focus:ring-red-500/30;
+    }
+
+    .error-message {
+        @apply mt-1 text-xs text-red-400;
+    }
+
+    /* ----- Navigation links ----- */
+    .footer-link {
+        @apply text-sm text-text-muted hover:text-accent transition-colors duration-200;
+    }
+
+    .social-icon {
+        @apply w-9 h-9 bg-bg-light border border-border-soft rounded-full
+               flex items-center justify-center text-text-muted
+               hover:text-accent hover:border-accent/50
+               transition-all duration-200;
+    }
+
+    /* ----- Prose overrides for dark theme ----- */
+    .prose-dark {
+        @apply prose prose-invert
+               prose-p:text-text-muted prose-p:leading-relaxed
+               prose-headings:font-heading prose-headings:text-text-primary
+               prose-a:text-accent prose-a:no-underline hover:prose-a:underline
+               prose-strong:text-text-primary
+               prose-li:text-text-muted
+               prose-blockquote:border-accent/40 prose-blockquote:text-text-muted;
+    }
+
+    /* ----- Sticky booking bar ----- */
+    .sticky-booking-bar {
+        @apply fixed bottom-0 left-0 right-0 z-30
+               bg-bg-card/95 backdrop-blur-md
+               border-t border-border-soft
+               px-4 py-3
+               translate-y-full transition-transform duration-300;
+    }
+    .sticky-booking-bar.visible {
+        @apply translate-y-0;
+    }
+}
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+@layer utilities {
+    .text-gradient-accent {
+        background: linear-gradient(135deg, #D4157A, #F06FAF);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .text-gradient-gold {
+        background: linear-gradient(135deg, #F0C060, #C49030);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .bg-blur {
+        @apply backdrop-blur-md bg-bg-base/90;
+    }
+
+    /* Section spacing helpers */
+    .section-py { @apply py-section; }
+    .section-py-sm { @apply py-section-sm; }
+
+    /* Animate on scroll helper */
+    .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .animate-on-scroll.in-view {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================================
+   CUSTOM SCROLLBAR FOR MODALS / PANELS
+   ============================================================ */
+.scroll-thin::-webkit-scrollbar { width: 4px; }
+.scroll-thin::-webkit-scrollbar-track { background: transparent; }
+.scroll-thin::-webkit-scrollbar-thumb { @apply bg-border-soft rounded-full; }
+
+/* ============================================================
+   LIVEWIRE / ALPINE TRANSITIONS
+   ============================================================ */
+[x-cloak] { display: none !important; }
+
+/* ============================================================
+   SWIPER OVERRIDES (testimonials)
+   ============================================================ */
+.swiper-pagination-bullet {
+    @apply bg-border-soft opacity-100 !important;
+}
+.swiper-pagination-bullet-active {
+    @apply bg-accent !important;
+}
