@@ -32,10 +32,10 @@ class HomeController extends Controller
 
         $specialist = [
             'name' => $settings['specialist_name'] ?? 'Елена Тимофеева',
-            'title' => $settings['specialist_title'] ?? 'Доула · Перинатальный психолог',
+            'title' => $settings['specialist_title'] ?? 'Доула · Консультант по материнству',
             'headline' => 'Подготовка к родам без страха и лишнего шума',
-            'subline' => 'Сопровождение, консультации и онлайн-курсы для беременности, родов и первых недель с малышом.',
-            'bio' => '<p>Я помогаю женщинам спокойно подготовиться к родам, понимать свои варианты и чувствовать опору рядом. В работе соединяю практику доулы, перинатальную психологию и понятную подготовку без давления.</p>',
+            'subline' => 'Сопровождение, консультации, онлайн-курсы и офлайн-школа материнства в Балашихе.',
+            'bio' => '<p>Я помогаю женщинам спокойно подготовиться к родам, понимать свои варианты и чувствовать опору рядом. В работе соединяю практику доулы, консультации по материнству и очные занятия школы материнства в Балашихе.</p>',
             'photo' => $this->sitePhoto($settings, 'specialist_photo', 'images/site/doula-hero.jpg'),
             'about_photo' => $this->sitePhoto($settings, 'specialist_about_photo', 'images/site/doula-work.jpg'),
             'certificate_photo' => $this->sitePhoto($settings, 'specialist_certificate_photo', 'images/site/doula-certificate.jpg'),
@@ -49,7 +49,7 @@ class HomeController extends Controller
 
         $certifications = [
             'Профессиональная доула',
-            'Перинатальная психология',
+            'Консультант по материнству и детскому здоровью',
             'Подготовка к партнёрским родам',
         ];
 

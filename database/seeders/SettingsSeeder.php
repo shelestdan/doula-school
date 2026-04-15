@@ -12,9 +12,9 @@ class SettingsSeeder extends Seeder
         $settings = [
             // Branding
             ['key' => 'site_name',        'value' => 'Школа материнства',                 'type' => 'string', 'group' => 'general'],
-            ['key' => 'site_tagline',     'value' => 'Доула и перинатальный психолог',     'type' => 'string', 'group' => 'general'],
+            ['key' => 'site_tagline',     'value' => 'Доула и школа материнства',          'type' => 'string', 'group' => 'general'],
             ['key' => 'specialist_name',  'value' => 'Елена Тимофеева',                    'type' => 'string', 'group' => 'general'],
-            ['key' => 'specialist_title', 'value' => 'Доула · Перинатальный психолог',     'type' => 'string', 'group' => 'general'],
+            ['key' => 'specialist_title', 'value' => 'Доула · Консультант по материнству', 'type' => 'string', 'group' => 'general'],
             ['key' => 'specialist_photo', 'value' => '',                                   'type' => 'string', 'group' => 'general'],
             ['key' => 'specialist_about_photo', 'value' => '',                             'type' => 'string', 'group' => 'general'],
             ['key' => 'specialist_certificate_photo', 'value' => '',                       'type' => 'string', 'group' => 'general'],
@@ -35,7 +35,7 @@ class SettingsSeeder extends Seeder
 
             // SEO
             ['key' => 'meta_title',       'value' => 'Школа материнства — Доула в Балашихе и Москве', 'type' => 'string', 'group' => 'seo'],
-            ['key' => 'meta_description', 'value' => 'Авторские онлайн-курсы и сопровождение родов от доулы и перинатального психолога.', 'type' => 'string', 'group' => 'seo'],
+            ['key' => 'meta_description', 'value' => 'Сопровождение родов, консультации и школа материнства в Балашихе.', 'type' => 'string', 'group' => 'seo'],
             ['key' => 'og_image',         'value' => '', 'type' => 'string', 'group' => 'seo'],
 
             // Analytics

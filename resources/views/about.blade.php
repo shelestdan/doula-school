@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Обо мне — Доула и перинатальный психолог')
-@section('meta_description', 'Узнайте больше о вашем специалисте — доуле и перинатальном психологе с опытом сопровождения более 100 родов.')
+@section('title', 'Обо мне — Доула и консультант по материнству')
+@section('meta_description', 'Узнайте больше о Елене Тимофеевой — доуле, консультанте по материнству и организаторе школы материнства в Балашихе.')
 
 @section('content')
 <main>
@@ -9,7 +9,7 @@
     <section class="bg-bg-section pt-24 pb-16">
         <div class="container mx-auto px-4 sm:px-6 text-center">
             <span class="section-eyebrow">Обо мне</span>
-            <h1 class="section-heading mt-2 mb-4">Доула и перинатальный психолог</h1>
+            <h1 class="section-heading mt-2 mb-4">Доула и консультант по материнству</h1>
         </div>
     </section>
 

@@ -29,7 +29,7 @@
     {{-- 1. HERO --}}
     <x-sections.hero
         :name="$specialist['name'] ?? ''"
-        :title="$specialist['title'] ?? 'Доула · Перинатальный психолог'"
+        :title="$specialist['title'] ?? 'Доула · Консультант по материнству'"
         :headline="$specialist['headline'] ?? 'Рядом с тобой\nв самый важный момент жизни'"
         :subline="$specialist['subline'] ?? 'Профессиональное сопровождение в родах, подготовка к рождению малыша и школа материнства в Балашихе и Москве'"
         :photo="$specialist['photo'] ?? null"
@@ -55,7 +55,7 @@
     {{-- 3. ABOUT --}}
     <x-sections.about
         :name="$specialist['name'] ?? ''"
-        :title="$specialist['title'] ?? 'Доула · Перинатальный психолог'"
+        :title="$specialist['title'] ?? 'Доула · Консультант по материнству'"
         :bio="$specialist['bio'] ?? ''"
         :photo="$specialist['about_photo'] ?? null"
         :secondary-photo="$specialist['certificate_photo'] ?? null"
