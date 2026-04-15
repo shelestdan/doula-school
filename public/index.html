@@ -136,8 +136,10 @@ section { padding: 90px 40px; }
 .about-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .about-photo img + .about-photo-placeholder { display: none; }
 .about-photo-placeholder { text-align: center; color: var(--muted); padding: 40px; }
-.cert-photo { position: absolute; right: -32px; bottom: -28px; width: 170px; height: 120px; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 6px 24px var(--shadow); background: var(--bg3); }
-.cert-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.certificate-proof { display: flex; gap: 16px; align-items: center; background: var(--bg3); border: 1px solid var(--border); border-radius: 18px; padding: 14px; margin: -8px 0 24px; box-shadow: 0 2px 16px var(--shadow); max-width: 520px; }
+.certificate-proof img { width: 112px; height: 82px; border-radius: 12px; object-fit: cover; display: block; flex-shrink: 0; }
+.certificate-proof-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+.certificate-proof-text { font-size: .8rem; color: var(--muted); line-height: 1.5; }
 .cred-card { position: absolute; background: var(--bg3); border: 1px solid var(--border); border-radius: 16px; padding: 14px 20px; box-shadow: 0 4px 20px var(--shadow); }
 .cred-1 { bottom: 40px; right: -28px; }
 .cred-2 { top: 40px; right: -28px; }
@@ -287,7 +289,8 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 6
   .photo-frame { width: min(78vw, 300px); height: 360px; }
   .float-badge { display: none; }
   .about-grid, .lm-inner { grid-template-columns: 1fr; }
-  .cert-photo { right: 12px; bottom: -20px; width: 140px; height: 96px; }
+  .certificate-proof { margin-top: -6px; }
+  .certificate-proof img { width: 96px; height: 72px; }
   .services-grid, .courses-grid, .testi-grid, .blog-grid { grid-template-columns: 1fr; }
   .faq-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -415,9 +418,6 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 6
             <p style="font-size:.8rem;margin-top:16px;color:var(--muted)">Фото Елены</p>
           </div>
         </div>
-        <div class="cert-photo">
-          <img src="images/site/doula-certificate.jpg" alt="Сертификат Елены Тимофеевой" onerror="this.parentElement.remove()">
-        </div>
         <div class="cred-card cred-2">
           <div class="cred-num">100+</div>
           <div class="cred-label">родов</div>
@@ -468,6 +468,13 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 6
           <div class="credential-item">
             <div class="cred-check"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></div>
             <span>Детский нейропсихолог</span>
+          </div>
+        </div>
+        <div class="certificate-proof">
+          <img src="images/site/doula-certificate.jpg" alt="Сертификат Елены Тимофеевой" onerror="this.parentElement.remove()">
+          <div>
+            <div class="certificate-proof-title">Сертификат Doula</div>
+            <div class="certificate-proof-text">Профессиональная доула, подготовка к родам и поддержка семьи.</div>
           </div>
         </div>
         <div class="mama-note">А ещё я многодетная мама — у меня три замечательные дочки. Это моя лучшая практика 💙</div>

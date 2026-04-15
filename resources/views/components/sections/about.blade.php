@@ -28,15 +28,9 @@
                         @endif
                     </div>
 
-                    @if($secondaryPhoto)
-                        <div class="absolute -bottom-8 right-0 hidden w-40 overflow-hidden rounded-lg border border-border-soft shadow-card sm:block lg:-right-8">
-                            <img src="{{ $secondaryPhoto }}" alt="Сертификат {{ $name }}" class="h-28 w-full object-cover">
-                        </div>
-                    @endif
-
                     {{-- Floating credentials cards --}}
                     @foreach($credentials as $i => $cred)
-                    <div class="absolute {{ $i === 0 ? ($secondaryPhoto ? '-bottom-6 -left-6' : '-bottom-6 -right-6') : '-top-6 -left-6' }} bg-bg-card border border-border-soft rounded-card p-4 shadow-card max-w-xs">
+                    <div class="absolute {{ $i === 0 ? '-bottom-6 -right-6' : '-top-6 -left-6' }} bg-bg-card border border-border-soft rounded-card p-4 shadow-card max-w-xs">
                         <div class="flex items-center gap-3">
                             <div class="w-10 h-10 rounded-full bg-accent/15 flex items-center justify-center flex-shrink-0">
                                 <span class="font-heading font-bold text-accent text-sm">{{ $cred['icon'] ?? substr($cred['label'], 0, 2) }}</span>
@@ -68,6 +62,16 @@
                     <div class="space-y-4 text-text-muted leading-relaxed mb-8">
                         <p>Я помогаю женщинам встретить роды с уверенностью и спокойствием. Как доула, я нахожусь рядом в самый важный момент вашей жизни — с начала схваток до первого взгляда на малыша.</p>
                         <p>Более 5 лет я сопровождаю семьи в родах, проводю подготовительные курсы и консультации по перинатальной психологии. Каждая история уникальна, и я рядом с каждой из них.</p>
+                    </div>
+                @endif
+
+                @if($secondaryPhoto)
+                    <div class="flex items-center gap-4 bg-bg-card border border-border-soft rounded-card p-4 mb-8">
+                        <img src="{{ $secondaryPhoto }}" alt="Сертификат {{ $name }}" class="w-28 h-20 rounded-lg object-cover flex-shrink-0">
+                        <div>
+                            <div class="font-heading font-semibold text-text-primary">Сертификат Doula</div>
+                            <div class="text-sm text-text-muted mt-1">Профессиональная доула, подготовка к родам и поддержка семьи.</div>
+                        </div>
                     </div>
                 @endif
 
