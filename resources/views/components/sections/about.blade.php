@@ -3,6 +3,7 @@
     'title'       => 'Доула · Перинатальный психолог',
     'bio'         => '',
     'photo'       => null,
+    'secondaryPhoto' => null,
     'credentials' => [],
     'values'      => [],
 ])
@@ -27,9 +28,15 @@
                         @endif
                     </div>
 
+                    @if($secondaryPhoto)
+                        <div class="absolute -bottom-8 right-0 hidden w-40 overflow-hidden rounded-lg border border-border-soft shadow-card sm:block lg:-right-8">
+                            <img src="{{ $secondaryPhoto }}" alt="Сертификат {{ $name }}" class="h-28 w-full object-cover">
+                        </div>
+                    @endif
+
                     {{-- Floating credentials cards --}}
                     @foreach($credentials as $i => $cred)
-                    <div class="absolute {{ $i === 0 ? '-bottom-6 -right-6' : '-top-6 -left-6' }} bg-bg-card border border-border-soft rounded-card p-4 shadow-card max-w-xs">
+                    <div class="absolute {{ $i === 0 ? ($secondaryPhoto ? '-bottom-6 -left-6' : '-bottom-6 -right-6') : '-top-6 -left-6' }} bg-bg-card border border-border-soft rounded-card p-4 shadow-card max-w-xs">
                         <div class="flex items-center gap-3">
                             <div class="w-10 h-10 rounded-full bg-accent/15 flex items-center justify-center flex-shrink-0">
                                 <span class="font-heading font-bold text-accent text-sm">{{ $cred['icon'] ?? substr($cred['label'], 0, 2) }}</span>

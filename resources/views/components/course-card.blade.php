@@ -1,87 +1,104 @@
 @props(['course'])
 
-<a href="{{ route('courses.show', $course->slug) }}"
-   class="card group flex flex-col hover:border-accent-main/60 transition-all duration-300 hover:-translate-y-1">
+@php
+    $slug = (string) ($course->slug ?? '');
+    $levelLabel = match($course->level) {
+        'beginner' => 'Базовый уровень',
+        'intermediate' => 'Средний уровень',
+        'advanced' => 'Продвинутый уровень',
+        default => $course->level,
+    };
+    $iconType = str_contains($slug, 'partner')
+        ? 'partner'
+        : (str_contains($slug, 'mesyats') || str_contains($slug, 'malysh') ? 'baby' : 'birth');
+    $paymentsEnabled = (bool) (($globalSettings ?? [])['yookassa_enabled'] ?? false);
+    $checkoutUrl = $paymentsEnabled
+        ? route('checkout.show', $course->slug)
+        : route('contacts') . '?course=' . rawurlencode($course->slug) . '#form';
+@endphp
 
-    {{-- Cover --}}
-    <div class="relative aspect-[16/9] overflow-hidden rounded-t-xl -mx-6 -mt-6 mb-5">
-        @if($course->cover)
-            <img src="{{ $course->cover }}" alt="{{ $course->title }}"
-                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-        @else
-            <div class="w-full h-full gradient-card flex items-center justify-center">
-                <svg class="w-12 h-12 text-accent-main/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-                </svg>
-            </div>
-        @endif
-
-        @if($course->badge)
-            <span class="absolute top-3 left-3 badge-accent text-xs font-semibold">{{ $course->badge }}</span>
-        @endif
-
-        @if($course->hasDiscount())
-            <span class="absolute top-3 right-3 bg-accent-gold text-bg-base text-xs font-bold px-2 py-1 rounded-full">
-                -{{ $course->discountPercent() }}%
-            </span>
-        @endif
-    </div>
-
-    {{-- Body --}}
-    <div class="flex flex-col flex-1">
-        @if($course->level)
-            <span class="text-xs text-text-muted uppercase tracking-wider mb-2">
-                {{ match($course->level) { 'beginner' => 'Начинающий', 'intermediate' => 'Средний', 'advanced' => 'Продвинутый', default => $course->level } }}
-            </span>
-        @endif
-
-        <h3 class="font-heading font-semibold text-text-primary text-lg leading-snug mb-2 group-hover:text-accent-main transition-colors">
-            {{ $course->title }}
-        </h3>
-
-        @if($course->short_desc)
-            <p class="text-text-muted text-sm leading-relaxed mb-4 flex-1">{{ Str::limit($course->short_desc, 110) }}</p>
-        @endif
-
-        {{-- Meta --}}
-        <div class="flex items-center gap-4 text-xs text-text-muted mb-4">
-            @if($course->lessons_count)
-                <span class="flex items-center gap-1">
-                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.069A1 1 0 0121 8.82v6.36a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/>
-                    </svg>
-                    {{ $course->lessons_count }} уроков
-                </span>
+<article class="group flex h-full flex-col overflow-hidden rounded-lg border border-border-soft bg-bg-card transition duration-300 hover:-translate-y-1 hover:border-accent/60 hover:shadow-card">
+    <a href="{{ route('courses.show', $course->slug) }}" class="block">
+        <div class="relative aspect-[16/10] overflow-hidden bg-gradient-card">
+            @if($course->cover)
+                <img
+                    src="{{ $course->cover }}"
+                    alt="{{ $course->title }}"
+                    class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                    loading="lazy"
+                >
+            @else
+                <div class="flex h-full w-full items-center justify-center bg-[radial-gradient(circle_at_30%_20%,rgba(240,192,96,0.20),transparent_34%),linear-gradient(135deg,#1A0530,#150428)]">
+                    <div class="flex h-16 w-16 items-center justify-center rounded-lg border border-accent/25 bg-accent/10 text-accent">
+                        @if($iconType === 'partner')
+                            <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11a4 4 0 10-8 0m8 0a4 4 0 11-8 0m8 0v1a4 4 0 01-8 0v-1m-3 9a7 7 0 0114 0M5 20a5 5 0 0110 0"/>
+                            </svg>
+                        @elseif($iconType === 'baby')
+                            <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21c4 0 7-3 7-7 0-5-4-9-7-11-3 2-7 6-7 11 0 4 3 7 7 7z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 13h.01M15 13h.01M10 17c1.2.8 2.8.8 4 0"/>
+                            </svg>
+                        @else
+                            <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3c3 2.5 6 6.2 6 10a6 6 0 01-12 0c0-3.8 3-7.5 6-10z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 14c1.6 1.3 4.4 1.3 6 0"/>
+                            </svg>
+                        @endif
+                    </div>
+                </div>
             @endif
-            @if($course->duration_hours)
-                <span class="flex items-center gap-1">
-                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-                    {{ $course->duration_hours }} ч
+
+            @if($course->badge)
+                <span class="absolute left-3 top-3 badge-accent text-xs font-semibold">{{ $course->badge }}</span>
+            @endif
+
+            @if($course->hasDiscount())
+                <span class="absolute right-3 top-3 rounded-full bg-gold px-2 py-1 text-xs font-bold text-bg-base">
+                    -{{ $course->discountPercent() }}%
                 </span>
             @endif
         </div>
+    </a>
 
-        {{-- Price --}}
-        <div class="flex items-center justify-between mt-auto pt-4 border-t border-white/5">
+    <div class="flex flex-1 flex-col p-5">
+        @if($levelLabel)
+            <span class="mb-2 text-xs uppercase tracking-wider text-text-muted">{{ $levelLabel }}</span>
+        @endif
+
+        <a href="{{ route('courses.show', $course->slug) }}" class="mb-2 block">
+            <h3 class="font-heading text-lg font-semibold leading-snug text-text-primary transition-colors group-hover:text-accent">
+                {{ $course->title }}
+            </h3>
+        </a>
+
+        @if($course->short_desc)
+            <p class="mb-5 flex-1 text-sm leading-relaxed text-text-muted">{{ Str::limit($course->short_desc, 118) }}</p>
+        @endif
+
+        <div class="mb-5 flex flex-wrap items-center gap-3 text-xs text-text-muted">
+            @if($course->lessons_count)
+                <span>{{ $course->lessons_count }} уроков</span>
+            @endif
+            @if($course->duration_hours)
+                <span>{{ $course->duration_hours }} ч</span>
+            @endif
+            <span>доступ навсегда</span>
+        </div>
+
+        <div class="mt-auto flex items-center justify-between gap-4 border-t border-white/5 pt-4">
             <div>
-                <span class="text-xl font-bold text-accent-main">
-                    {{ number_format($course->price, 0, '.', ' ') }} ₽
-                </span>
+                <span class="text-xl font-bold text-accent">{{ number_format($course->price, 0, '.', ' ') }} ₽</span>
                 @if($course->hasDiscount())
                     <span class="ml-2 text-sm text-text-muted line-through">
                         {{ number_format($course->old_price, 0, '.', ' ') }} ₽
                     </span>
                 @endif
             </div>
-            <span class="text-accent-main text-sm font-medium group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-                Подробнее
-                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                </svg>
-            </span>
+
+            <a href="{{ $checkoutUrl }}" class="btn-accent btn-sm shrink-0">
+                Купить курс
+            </a>
         </div>
     </div>
-</a>
+</article>

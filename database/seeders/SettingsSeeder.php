@@ -13,8 +13,11 @@ class SettingsSeeder extends Seeder
             // Branding
             ['key' => 'site_name',        'value' => 'Школа материнства',                 'type' => 'string', 'group' => 'general'],
             ['key' => 'site_tagline',     'value' => 'Доула и перинатальный психолог',     'type' => 'string', 'group' => 'general'],
-            ['key' => 'specialist_name',  'value' => '',                                   'type' => 'string', 'group' => 'general'],
+            ['key' => 'specialist_name',  'value' => 'Елена Тимофеева',                    'type' => 'string', 'group' => 'general'],
             ['key' => 'specialist_title', 'value' => 'Доула · Перинатальный психолог',     'type' => 'string', 'group' => 'general'],
+            ['key' => 'specialist_photo', 'value' => '',                                   'type' => 'string', 'group' => 'general'],
+            ['key' => 'specialist_about_photo', 'value' => '',                             'type' => 'string', 'group' => 'general'],
+            ['key' => 'specialist_certificate_photo', 'value' => '',                       'type' => 'string', 'group' => 'general'],
             ['key' => 'site_logo',        'value' => '',                                   'type' => 'string', 'group' => 'general'],
 
             // Contacts

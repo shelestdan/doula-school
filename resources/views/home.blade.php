@@ -58,6 +58,7 @@
         :title="$specialist['title'] ?? 'Доула · Перинатальный психолог'"
         :bio="$specialist['bio'] ?? ''"
         :photo="$specialist['about_photo'] ?? null"
+        :secondary-photo="$specialist['certificate_photo'] ?? null"
         :credentials="$credentials ?? []"
         :values="$values ?? []"
     />

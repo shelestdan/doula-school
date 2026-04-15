@@ -8,8 +8,8 @@
             <div class="inline-flex items-center gap-2 bg-accent/10 border border-accent/20 rounded-full px-4 py-1.5 mb-4">
                 <span class="text-sm text-accent uppercase tracking-widest font-medium">Команда</span>
             </div>
-            <h2 class="font-heading font-bold text-section text-text-primary">Мои партнёры</h2>
-            <p class="mt-4 text-text-muted max-w-xl mx-auto">Специалисты, с которыми я работаю — психологи, акушерки, инструкторы</p>
+            <h2 class="font-heading font-bold text-section text-text-primary">Партнёры и заменяющие доулы</h2>
+            <p class="mt-4 text-text-muted max-w-xl mx-auto">Проверенные специалисты, которые могут подключиться к сопровождению при необходимости.</p>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

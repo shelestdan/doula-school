@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', ($course->meta_title ?: $course->title) . ' — Школа материнства')
-@section('meta_description', $course->meta_description ?: $course->short_desc)
+@section('description', $course->meta_description ?: $course->short_desc)
 
 @section('structured_data')
 <script type="application/ld+json">
@@ -24,6 +24,13 @@
 @endsection
 
 @section('content')
+@php
+    $paymentsEnabled = (bool) (($globalSettings ?? [])['yookassa_enabled'] ?? false);
+    $courseCheckoutUrl = $paymentsEnabled
+        ? route('checkout.show', $course->slug)
+        : route('contacts') . '?course=' . rawurlencode($course->slug) . '#form';
+@endphp
+
 <main>
     {{-- Hero --}}
     <section class="bg-bg-section pt-24 pb-0">
@@ -72,7 +79,7 @@
                         </a>
                     @else
                         <div class="flex flex-wrap items-center gap-4">
-                            <a href="{{ route('checkout.show', $course->slug) }}" class="btn-accent text-lg px-10 py-4">
+                            <a href="{{ $courseCheckoutUrl }}" class="btn-accent text-lg px-10 py-4">
                                 Купить за {{ number_format($course->price, 0, '.', ' ') }} ₽
                             </a>
                             @if($course->hasDiscount())
@@ -174,7 +181,7 @@
         <div class="container mx-auto px-4 sm:px-6 text-center max-w-2xl">
             <h2 class="section-heading mb-4">Готовы начать?</h2>
             <p class="text-text-muted mb-8">Присоединяйтесь и получите пожизненный доступ к курсу.</p>
-            <a href="{{ route('checkout.show', $course->slug) }}" class="btn-accent text-lg px-12 py-4">
+            <a href="{{ $courseCheckoutUrl }}" class="btn-accent text-lg px-12 py-4">
                 Записаться за {{ number_format($course->price, 0, '.', ' ') }} ₽
             </a>
         </div>

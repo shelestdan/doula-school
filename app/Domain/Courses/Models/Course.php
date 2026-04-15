@@ -23,7 +23,7 @@ class Course extends Model implements HasMedia
         'access_type', 'access_days',
         'level', 'duration_hours', 'lessons_count',
         'what_you_learn', 'requirements', 'includes',
-        'is_published', 'is_featured', 'sort_order',
+        'is_active', 'is_published', 'is_featured', 'status', 'published_at', 'sort_order',
         'badge',
         'meta_title', 'meta_description', 'meta_keywords',
         'og_title', 'og_description', 'og_image',
@@ -34,7 +34,9 @@ class Course extends Model implements HasMedia
         'requirements'   => 'array',
         'includes'       => 'array',
         'is_published'   => 'boolean',
+        'is_active'      => 'boolean',
         'is_featured'    => 'boolean',
+        'published_at'   => 'datetime',
         'price'          => 'decimal:2',
         'old_price'      => 'decimal:2',
     ];

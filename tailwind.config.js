@@ -25,6 +25,7 @@ export default {
                 // Accent colors
                 'accent': {
                     DEFAULT: '#D4157A',
+                    main:    '#D4157A',
                     hover:   '#B8106A',
                     light:   '#F06FAF',
                     dark:    '#8E0E52',
